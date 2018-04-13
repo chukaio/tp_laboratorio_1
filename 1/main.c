@@ -6,7 +6,7 @@
 int main()
 {
     //Declaracion de variables
-    int opcion, opcionAux, seguir=1, fact=0, entero=1;
+    int opcion, seguir=1, entero=1, fact=0;
     float num1=0,num2=0,res;
 
     //Cuerpo del programa main.c
@@ -26,7 +26,6 @@ int main()
         printf(" 4) Calcular la resta          ====> %.2f - %.2f\n",num1,num2);
         printf(" 5) Calcular la division       ====> %.2f / %.2f\n",num1,num2);
         printf(" 6) Calcular la multiplicacion ====> %.2f * %.2f\n",num1,num2);
-        //Analiza siempre cual es el ultimo operando ingresado para actualizar el menu en funcion de ello
         //Si el float ingresado en cualquiera de los operandos tiene decimales, dara error
         if ( entero==1 )
         {
@@ -71,7 +70,6 @@ int main()
         {
             case 1:
                 {
-                    opcionAux=opcion;
                     printf("Ingrese 1er operando\n");
                     printf("\n");
                     printf("A=");
@@ -90,20 +88,10 @@ int main()
                 }
             case 2:
                 {
-                    opcionAux=opcion;
                     printf("Ingrese 2do operando\n");
                     printf("\n");
                     printf("B=");
                     scanf("%f",&num2);
-                    if ( num2-(int)num2==0 )
-                    {
-                        fact=num2;
-                        entero=1;
-                    }
-                    else
-                    {
-                        entero=0;
-                    }
                     system("cls");
                     break;
                 }
@@ -168,33 +156,17 @@ int main()
                 }
             case 7:
                 {
-                    //Calcula siempre el factorial del ultimo operando ingresado
                     printf("*** Operacion elegida: Factorial ***\n");
                     printf("\n\n");
-                    if ( opcionAux==1 )
+                    res=(float)factorial( num1 );
+                    if ( res!=0 )
                     {
-                        res=(float)factorial( num1 );
-                        if ( res!=0 )
-                        {
-                           printf("El resultado de %d! es %d\n",(int)num1,(int)res);
-                        }
-                        printf("\n\n");
-                        printf("Presione cualquier tecla para continuar\n");
-                        getch();
-                        system("cls");
+                        printf("El resultado de %d! es %d\n",(int)num1,(int)res);
                     }
-                    else
-                    {
-                        res=(float)factorial( num2 );
-                        if ( res!=0 )
-                        {
-                           printf("El resultado de %d! es %d\n",(int)num2,(int)res);
-                        }
-                        printf("\n\n");
-                        printf("Presione cualquier tecla para continuar\n");
-                        getch();
-                        system("cls");
-                    }
+                    printf("\n\n");
+                    printf("Presione cualquier tecla para continuar\n");
+                    getch();
+                    system("cls");
                     break;
                 }
             case 8:
@@ -234,24 +206,12 @@ int main()
                     //FACTORIAL
                     printf("*** Factorial ***\n");
                     printf("\n\n");
-                    if ( opcionAux==1 )
+                    res=(float)factorial( num1 );
+                    if ( res!=0 )
                     {
-                        res=(float)factorial( num1 );
-                        if ( res!=0 )
-                        {
-                           printf("El resultado de %d! es %d\n",(int)num1,(int)res);
-                        }
-                        printf("\n\n");
+                        printf("El resultado de %d! es %d\n",(int)num1,(int)res);
                     }
-                    else
-                    {
-                        res=(float)factorial( num2 );
-                        if ( res!=0 )
-                        {
-                           printf("El resultado de %d! es %d\n",(int)num2,(int)res);
-                        }
-                        printf("\n\n");
-                    }
+                    printf("\n\n");
                     printf("Presione cualquier tecla para continuar\n");
                     getch();
                     system("cls");
