@@ -1,6 +1,11 @@
 #include "funciones.h"
 
-//
+/**
+*\brief ... Inicializa en estado 0 todos los struct
+*\param ... El array de struct y su tamaño
+*\return ... No devuelve nada
+*
+*/
 void initPersona (ePersona alumno[], int cant)
 {
     for (int i=0 ; i<cant ; i++)
@@ -9,7 +14,12 @@ void initPersona (ePersona alumno[], int cant)
     }
 }
 
-//
+/**
+*\brief ... Busca un espacio libre en el array de struct
+*\param ... El array de struct y su tamaño
+*\return ... Devuelve el Indice libre
+*
+*/
 int srchEspacio (ePersona alumno[], int cant)
 {
     int indice, agendaLlena=1;
@@ -31,12 +41,30 @@ int srchEspacio (ePersona alumno[], int cant)
     return indice;
 }
 
-//
+/**
+*\brief ... Carga un struct al array
+*\param ... El array de struct y su indice libbre
+*\return ... No devuelve nada
+*
+*/
 void newPersona (ePersona alumno[], int indice)
 {
+    char aux[50];
+
     printf("Ingrese nombre\n   ");
     fflush(stdin);
-    scanf("%[^\n]",alumno[indice].nombre);
+    scanf("%[^\n]",aux);
+    if(strlen(aux)>30)
+    {
+        printf("Ingrese un nombre mas pequeño");
+        printf("Ingrese nombre\n   ");
+        fflush(stdin);
+        scanf("%[^\n]",aux);
+    }
+    else
+    {
+        strcpy(alumno[indice].nombre,aux);
+    }
     strlwr(alumno[indice].nombre);
     for(int i=0 ; alumno[indice].nombre[i]!='\0' ; i++)
     {
@@ -59,7 +87,12 @@ void newPersona (ePersona alumno[], int indice)
     alumno[indice].estado=1;
 }
 
-//
+/**
+*\brief ... Hace una baja logica
+*\param ... El array de struct y su tamaño
+*\return ... No devuelve nada
+*
+*/
 void clrPersona (ePersona alumno[], int cant)
 {
     char rta;
@@ -111,6 +144,12 @@ void clrPersona (ePersona alumno[], int cant)
     }
     system("cls");
 }
+/**
+*\brief ... Ordena el array de struct por nombre segun alfabeto
+*\param ... El array de struct y su tamaño
+*\return ... No devuelve nada
+*
+*/
 void orderPersona(ePersona alumno[] , int cant)
 {
     ePersona aux;
@@ -128,6 +167,12 @@ void orderPersona(ePersona alumno[] , int cant)
         }
     }
 }
+/**
+*\brief ... Imprime un struct en pantalla
+*\param ... El array de struct y su tamaño
+*\return ... No devuelve nada
+*
+*/
 void prntPersona (ePersona alumno[] , int cant)
 {
     int vacio=1, offset;
@@ -227,6 +272,12 @@ void fillTable (ePersona alumno[] , int cant)
     }
     prntEdades(table);
 }
+/**
+*\brief ... Carga e imprime la tabla de edades
+*\param ... La matriz de edades
+*\return ... No devuelve nada
+*
+*/
 void prntEdades (char table[20][3])
 {
     int hayAlgo=0;
