@@ -152,22 +152,6 @@ char isThat(char source,char a, char b)
 
     return source;
 }
-/*
-int isRepeated(eMovie2 *peli, char auxString[], int n)
-{
-    int repetido=0, i;
-
-    for(i=0 ; i<n ; i++)
-    {
-        if(strcmp((peli+i)->titulo,auxString)==0)
-        {
-            repetido=1;
-        }
-    }
-
-    return repetido;
-}
-*/
 //Brief: Chequea si aux es un cero
 //Parameters: 1 string
 //Return: Devuelve "1" si es cero o "0" si no lo es

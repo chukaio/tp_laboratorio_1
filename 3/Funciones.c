@@ -75,92 +75,6 @@ void setURL(eMovie *peli)
     strcat(URL,aux);
     strcpy(peli->url,URL);
 }
-/*
-void setID(int n)
-{
-    int i, cant, posicion;
-    float pos;
-    eMovie *peli;
-    FILE *listMovie;
-
-    printf("n dentro de setID vale %d\n",n);
-    listMovie=fopen("MovieList.dat","rb");
-    if(listMovie==NULL)
-    {
-        printf("\nNo existe lista de peliculas, primero cree una\n");
-        return;
-    }
-    else
-    {
-        listMovie=fopen("MovieList.dat","r+b");
-        if(listMovie==NULL)
-        {
-            printf("\nNo puede abrirse la lista de peliculas\n");
-            return;
-        }
-    }
-    peli=(eMovie *)malloc(sizeof(eMovie)*n);
-    if(peli==NULL)
-    {
-        printf("No se puede reservar memoria para dicha estructura\n");
-        return;
-    }
-    else
-    {
-        printf("---------------------------------------------\n");
-        fseek(listMovie,0L,SEEK_SET);
-        posicion=ftell(listMovie);
-        pos=posicion/sizeof(eMovie);
-        printf("Posicion antes del for=%.2f\n",pos);
-        for(i=0 ; i<n ; i++)
-        {
-            cant=fread(peli+i,sizeof(eMovie),1,listMovie);
-            if(cant!=1)
-            {
-                printf("EEEEEEEEEEEEEEEEEEEEE\n");
-                system("pause");
-            }
-            posicion=ftell(listMovie);
-            pos=posicion/sizeof(eMovie);
-            printf("Posicion dentro del for y dps del 1er fread=%.2f\n",pos);
-            printf("Antes de evaluar cant: peli+i -> titulo es \"%s\", peli+i -> isEmpty es %d\n",(peli+i)->titulo,(peli+i)->isEmpty);
-            if(cant!=1)
-            {
-                printf("\nError\n");
-                return;
-            }
-            else
-            {
-                printf("Despues de evaluar cant: peli+i -> titulo es \"%s\", peli+i -> isEmpty es %d\n",(peli+i)->titulo,(peli+i)->isEmpty);
-                if((peli+i)->isEmpty==VACIO)
-                {
-                    printf("Entre al continue? Vuelta i=%d\n",i);
-                    printf("---------------------------------------------\n");
-                    continue;
-                }
-                else if((peli+i)->isEmpty==LLENO)
-                {
-                    printf("Entre al LLENO? Vuelta i=%d\n",i);
-                    (peli+i)->id=i;
-                    printf("Dentro de LLENO: peli+i -> id es %d, peli+i -> titulo es \"%s\", peli+i -> isEmpty es %d\n",(peli+i)->id,(peli+i)->titulo,(peli+i)->isEmpty);
-                    fseek(listMovie,sizeof(eMovie)*-1,SEEK_CUR);
-                    posicion=ftell(listMovie);
-                    pos=posicion/sizeof(eMovie);
-                    printf("Posicion en LLENO y tras el fseek -1=%.2f\n",pos);
-                    fwrite(peli+i,sizeof(eMovie),1,listMovie);
-                    posicion=ftell(listMovie);
-                    pos=posicion/sizeof(eMovie);
-                    printf("Posicion en LLENO y tras el fwrite =%.2f\n",pos);
-                    printf("Dentro de LLENO y dps de escribir el FILE: peli+i -> id es %d, peli+i -> titulo es \"%s\", peli+i -> isEmpty es %d\n",(peli+i)->id,(peli+i)->titulo,(peli+i)->isEmpty);
-                    printf("---------------------------------------------\n");
-                }
-            }
-        }
-    }
-
-    fclose(listMovie);
-}
-*/
 //Brief: Setea los datos de un puntero a estructura eMovie
 //Parameters: 1 puntero a estructura eMovie
 //Return: void
@@ -587,30 +501,12 @@ void modMovie(int n)
                                         printf("\nIngrese titulo: ");
                                         fflush(stdin);
                                         scanf("%[^\n]",auxString);
-                                        /*
-                                        for(i=0 ; i<n ; i++)
-                                        {
-                                            if(strcmp((peli+i)->titulo,auxString)==0)
-                                            {
-                                                repetido=1;
-                                            }
-                                        }
-                                        */
                                         error=isLwrThan(auxString,50);
                                         while(error==1||repetido==1)
                                         {
                                             printf("\nSe ha excedido de los 50 caracteres, ingrese titulo nuevamente: ");
                                             fflush(stdin);
                                             scanf("%[^\n]",auxString);
-                                            /*
-                                            for(i=0 ; i<n ; i++)
-                                            {
-                                                if(strcmp((peli+i)->titulo,auxString)==0)
-                                                {
-                                                    repetido=1;
-                                                }
-                                            }
-                                            */
                                             error=isLwrThan(auxString,50);
                                         }
                                         strcpy((peli+indice)->titulo,formatName(auxString));
@@ -757,3 +653,96 @@ void modMovie(int n)
     fclose(listMovie);
     free(peli);
 }
+//Brief: Genera una pagina web a partir del binario de lista de peliculas
+//Parameters: 1 entero tamaño
+//Return: void
+//
+void generateWeb(int n)
+{
+    int i, puntaje, duracion, cant;
+    char head[]="<!DOCTYPE html><!-- Template by Quackit.com --><html lang='en'><head><meta charset='utf-8'><meta http-equiv='X-UA-Compatible' content='IE=edge'><meta name='viewport' content='width=device-width, initial-scale=1'><!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags --><title>Lista peliculas</title><!-- Bootstrap Core CSS --><link href='css/bootstrap.min.css' rel='stylesheet'><!-- Custom CSS: You can use this stylesheet to override any Bootstrap styles and/or apply your own styles --><link href='css/custom.css' rel='stylesheet'><!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries --><!-- WARNING: Respond.js doesn't work if you view the page via file:// --><!--[if lt IE 9]><script src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js'></script><script src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js'></script><![endif]--></head><body><div class='container'><div class='row'>";
+    char tail[]="</div><!-- /.row --></div><!-- /.container --><!-- jQuery --><script src='js/jquery-1.11.3.min.js'></script><!-- Bootstrap Core JavaScript --><script src='js/bootstrap.min.js'></script><!-- IE10 viewport bug workaround --><script src='js/ie10-viewport-bug-workaround.js'></script><!-- Placeholder Images --><script src='js/holder.min.js'></script></body></html>";
+    char body[10000];
+    char url[100], titulo[100], genero[50], descripcion[500];
+    eMovie *peli;
+    FILE *listMovie, *web;
+
+    system("cls");
+    printf("---Generar pagina web---\n\n");
+    listMovie=fopen("MovieList.dat","rb");
+    if(listMovie==NULL)
+    {
+        listMovie=fopen("MovieList.dat","wb");
+        if(listMovie==NULL)
+        {
+            printf("El archivo no puede ser abierto\n");
+            return;
+        }
+    }
+    else
+    {
+        listMovie=fopen("MovieList.dat","r+b");
+    }
+    web=fopen("index.html","r");
+    if(web==NULL)
+    {
+        web=fopen("index.html","w");
+        if(web==NULL)
+        {
+            printf("El archivo no puede ser abierto\n");
+            return;
+        }
+    }
+    else
+    {
+        web=fopen("index.html","w");
+        if(web==NULL)
+        {
+            printf("El archivo no puede ser abierto\n");
+            return;
+        }
+    }
+    peli=(eMovie *)malloc(sizeof(eMovie)*n);
+    if(peli==NULL)
+    {
+        printf("No se puede reservar memoria para dicha estructura\n");
+        return;
+    }
+    else
+    {
+        fseek(listMovie,0L,SEEK_SET);
+        for(i=0 ; i<n ; i++)
+        {
+            cant=fread(peli+i,sizeof(eMovie),1,listMovie);
+            if(cant!=1)
+            {
+                printf("Error\n");
+                return;
+            }
+        }
+        fseek(listMovie,0L,SEEK_SET);
+        fseek(web,0L,SEEK_SET);
+        fwrite(head,sizeof(char),strlen(head),web);
+        for(i=0 ; i<n ; i++)
+        {
+            if((peli+i)->isEmpty==LLENO)
+            {
+                strcpy(titulo,(peli+i)->titulo);
+                strcpy(genero,(peli+i)->genero);
+                strcpy(url,(peli+i)->url);
+                strcpy(descripcion,(peli+i)->descripcion);
+                puntaje=(peli+i)->puntaje;
+                duracion=(peli+i)->duracion;
+                sprintf(body,"<!-- Repetir esto para cada pelicula --><article class='col-md-4 article-intro'><a href='#'><img class='img-responsive img-rounded' src='%s' alt=''></a><h3><a href='#'>%s</a></h3><ul><li>Genero:%s</li><li>Puntaje:%d</li><li>Duracion:%d</li></ul><p>%s</p></article><!-- Repetir esto para cada pelicula -->",url,titulo,genero,puntaje,duracion,descripcion);
+                fwrite(body,sizeof(char),strlen(body),web);
+            }
+        }
+        fwrite(tail,sizeof(char),strlen(tail),web);
+        printf("\n\n-Pagina web generada exitosamente!\n\n");
+    }
+
+    free(peli);
+    fclose(web);
+    fclose(listMovie);
+}
+

@@ -49,7 +49,7 @@ int main()
             }
             case '4':
             {
-                //informpeli(peli,TAM);
+                generateWeb(n);
                 printf("\n\n");
                 system("pause");
                 system("cls");
@@ -57,6 +57,7 @@ int main()
             }
             case '5':
             {
+                generateWeb(n);
                 seguir=0;
                 break;
             }

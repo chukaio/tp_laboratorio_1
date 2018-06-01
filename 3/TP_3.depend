@@ -102,3 +102,27 @@
 1527770253 source:c:\users\pmtor\desktop\tp3 casi definitivo\main.c
 	"Funciones.h"
 
+1527864850 source:c:\users\pmtor\desktop\3\input.c
+	"Input.h"
+
+1527864873 c:\users\pmtor\desktop\3\input.h
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	<ctype.h>
+
+1527781862 source:c:\users\pmtor\desktop\3\main.c
+	"Funciones.h"
+
+1527781887 c:\users\pmtor\desktop\3\funciones.h
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	<ctype.h>
+	"Input.h"
+
+1527864818 source:c:\users\pmtor\desktop\3\funciones.c
+	"Funciones.h"
+

@@ -1,3 +1,6 @@
+#ifndef FUNCIONES_H_INCLUDED
+#define FUNCIONES_H_INCLUDED
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
@@ -27,3 +30,6 @@ void setID(int);
 void addMovie(void);
 void deleteMovie(int);
 void modMovie(int);
+void generateWeb(int);
+
+#endif // FUNCIONES_H_INCLUDED
