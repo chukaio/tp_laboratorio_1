@@ -1,0 +1,69 @@
+# depslib dependency file v1.0
+1527037546 source:c:\users\pmtor\desktop\laboratorio 1\librerias\formateo de variables\c\formateo.c
+	"../H/formateo.h"
+
+1527037565 c:\users\pmtor\desktop\laboratorio 1\librerias\formateo de variables\h\formateo.h
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	<ctype.h>
+
+1526421896 source:c:\users\pmtor\desktop\laboratorio 1\librerias\validaciones\c\validaciones.c
+	"../H/validaciones.h"
+
+1526420833 c:\users\pmtor\desktop\laboratorio 1\librerias\validaciones\h\validaciones.h
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	<ctype.h>
+
+1529455094 source:c:\users\pmtor\desktop\laboratorio 1\parcial 2\parcial2\producto.c
+	"producto.h"
+
+1528857119 source:c:\users\pmtor\desktop\laboratorio 1\parcial 2\parcial2\input.c
+	"input.h"
+
+1529455015 c:\users\pmtor\desktop\laboratorio 1\parcial 2\parcial2\input.h
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	<ctype.h>
+
+1529452641 source:c:\users\pmtor\desktop\laboratorio 1\parcial 2\parcial2\main.c
+	"producto.h"
+
+1529455000 c:\users\pmtor\desktop\laboratorio 1\parcial 2\parcial2\producto.h
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	<ctype.h>
+	"input.h"
+
+1528857119 source:c:\users\pmtor\desktop\recu parcial\recu parcial\input.c
+	"input.h"
+
+1529455015 c:\users\pmtor\desktop\recu parcial\recu parcial\input.h
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	<ctype.h>
+
+1529452641 source:c:\users\pmtor\desktop\recu parcial\recu parcial\main.c
+	"producto.h"
+
+1529455000 c:\users\pmtor\desktop\recu parcial\recu parcial\producto.h
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	<ctype.h>
+	"input.h"
+
+1529545931 source:c:\users\pmtor\desktop\recu parcial\recu parcial\producto.c
+	"producto.h"
+
